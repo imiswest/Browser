@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,11 +76,14 @@ WSGI_APPLICATION = 'browser.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'current_addr',     # 데이터베이스 이름
+        'USER': 'root',     # 데이터베이스 사용자 이름
+        'PASSWORD': '1234',      # 데이터베이스 비밀번호
+        'HOST': 'localhost',              # 데이터베이스 호스트, 일반적으로 로컬 서버는 'localhost'
+        'PORT': '3306',                   # 기본적으로 MySQL의 포트는 3306
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
