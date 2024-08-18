@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_browser/screens/data_screen.dart';
 import 'package:flutter_browser/screens/first_screen.dart';
 
 void main() {
