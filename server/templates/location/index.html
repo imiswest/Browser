@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>위경도 행정구역 조회</title>
+    <script>
+        function fetchLocation() {
+            const lat = document.getElementById('lat').value;
+            const lng = document.getElementById('lng').value;
+
+            fetch(`/location/get-location/?lat=${lat}&lng=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('result').innerText = data.error;
+                    } else {
+                        document.getElementById('result').innerText = 
+                            `시도: ${data.sido}, 시군구: ${data.sigungu}`;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>위경도 행정구역 조회</h1>
+    <form id="location-form" onsubmit="event.preventDefault(); fetchLocation();">
+        <label for="lat">위도:</label>
+        <input type="text" id="lat" name="lat" required>
+        <label for="lng">경도:</label>
+        <input type="text" id="lng" name="lng" required>
+        <button type="submit">조회</button>
+    </form>
+    <div id="result"></div>
+</body>
+</html>
