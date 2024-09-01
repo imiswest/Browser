@@ -40,7 +40,7 @@ class _DataScreen extends State<DataScreen> {
               Container( //정보 입력 네모 박스
                 margin: EdgeInsets.only(left: 27),
                 width: 450,
-                height: 400,
+                height: 460,
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 247, 201, 201), // Container의배경색
                   borderRadius: BorderRadius.circular(15)
@@ -292,7 +292,24 @@ class _DataScreen extends State<DataScreen> {
                         ),
                       ],
                     ),
-                    //체크박스 한줄 끝
+                    //체크박스 끝
+
+                    //환자 상태 작성 칸
+                    Container(//필수 의료 장비
+                      margin: EdgeInsets.only(left: 25, top: 10),
+                      child: Text('환자 상태', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 25, top: 5),
+                      width: 400,
+                      height: 50,
+                      color: Colors.white,
+                      child: TextField(
+                        decoration: InputDecoration(
+                        labelText: '입력',
+                        ),
+                      )
+                    )
                   ],
                 )
             )
