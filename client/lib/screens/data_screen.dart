@@ -13,7 +13,8 @@ class _DataScreen extends State<DataScreen> {
   String? _selectedValue2;
   final _valueList3 = ['KRAS 1', 'KRAS 2', 'KRAS 3', 'KRAS 4', 'KRAS 5'];
   String? _selectedValue3;
-  
+  final _valueList4 = ['일반(판단 어려움)', '흉부외과', '내과', '외과', '신경외과','심장내과'];
+  String? _selectedValue4;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +111,7 @@ class _DataScreen extends State<DataScreen> {
                       ],
                     ),
                     
-                    Row(
+                    Row( //중증도
                       children: [
                         Padding(padding: EdgeInsets.fromLTRB(25, 40, 0, 10)),
                         Text('중증도', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
@@ -143,7 +144,43 @@ class _DataScreen extends State<DataScreen> {
                           ),
                         ),
                       ],
-                    )
+                    ),
+
+                    Row( //예상 진료 과
+                      children: [
+                        Padding(padding: EdgeInsets.fromLTRB(25, 40, 0, 10)),
+                        Text('예상 진료 과', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                          Container(
+                          padding: EdgeInsets.only(left: 5),
+                          margin: EdgeInsets.only(left: 10, right: 50),
+                          color: Colors.white,
+                          height: 25,
+                          width: 180,
+                          child: DropdownButton(
+                            underline: SizedBox.shrink(),
+                            isExpanded: true,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                            hint: Text('선택'),
+                            value: _selectedValue4,
+                            items: _valueList4.map(
+                              (value) {
+                                return DropdownMenuItem(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              },
+                            ).toList(),
+                            onChanged: (String? value) {
+                              setState(() {
+                                _selectedValue4 = value;
+                                
+                              });
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    //추가
                   ],
                 )
             )
