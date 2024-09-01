@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_browser/screens/first_screen.dart';
+import 'package:flutter_browser/screens/data_screen.dart';
+import 'package:flutter_browser/widgets/custom_checkbox.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor:  Color.fromARGB(255, 253, 194, 204)),
         useMaterial3: true,
       ),
-      home: FirstScreen()
+      home: DataScreen()
     );
   }
 }

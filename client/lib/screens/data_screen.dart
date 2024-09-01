@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
+import 'package:flutter_browser/widgets/custom_checkbox.dart';
 
 class DataScreen extends StatefulWidget{
   @override
@@ -15,6 +16,11 @@ class _DataScreen extends State<DataScreen> {
   String? _selectedValue3;
   final _valueList4 = ['일반(판단 어려움)', '흉부외과', '내과', '외과', '신경외과','심장내과'];
   String? _selectedValue4;
+
+  bool isChecked_CT = false;
+  bool isChecked_MRI = false;
+  bool isChecked_Vessel = false;
+  bool isChecked_Respirator = false;
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +186,113 @@ class _DataScreen extends State<DataScreen> {
                         ),
                       ],
                     ),
-                    //추가
+                    //dropdown 버튼 끝
+
+                    //checkbox 시작
+                    Container(//필수 의료 장비
+                      margin: EdgeInsets.only(left: 25, top: 10),
+                      child: Text('필수 의료 장비', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                    ),
+                    Row(
+                      children: [
+                        Padding(padding: EdgeInsets.only(left: 25, top: 10)),                 
+                        Checkbox(//CT
+                          value: isChecked_CT,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              isChecked_CT = newValue!;
+                            });
+                          },
+                          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return Color.fromARGB(255, 212, 96, 107); // 체크박스가 선택되었을 때의 색상
+                            }
+                              return Colors.white; // 체크박스가 선택되지 않았을 때의 색상
+                          }),
+                          side: BorderSide(
+                            color: Colors.white,
+                          ),
+                          checkColor: Colors.white,
+                        ),
+                        Text(
+                        'CT', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+
+                        Padding(padding: EdgeInsets.only(left: 110)),                 
+                        Checkbox( //MRI
+                          value: isChecked_MRI,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              isChecked_MRI = newValue!;
+                            });
+                          },
+                          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return Color.fromARGB(255, 212, 96, 107); // 체크박스가 선택되었을 때의 색상
+                            }
+                              return Colors.white; // 체크박스가 선택되지 않았을 때의 색상
+                          }),
+                          side: BorderSide(
+                            color: Colors.white,
+                          ),
+                          checkColor: Colors.white,
+                        ),
+                        Text(
+                        'MRI', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    //체크박스 한줄 끝, 둘째 줄 시작
+                    Row(
+                      children: [
+                        Padding(padding: EdgeInsets.only(left: 25, top: 10)),                 
+                        Checkbox(//혈관촬영기
+                          value: isChecked_Vessel,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              isChecked_Vessel = newValue!;
+                            });
+                          },
+                          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return Color.fromARGB(255, 212, 96, 107); // 체크박스가 선택되었을 때의 색상
+                            }
+                              return Colors.white; // 체크박스가 선택되지 않았을 때의 색상
+                          }),
+                          side: BorderSide(
+                            color: Colors.white,
+                          ),
+                          checkColor: Colors.white,
+                        ),
+                        Text(
+                        '혈관촬영기', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+
+                        Padding(padding: EdgeInsets.only(left: 60)),                 
+                        Checkbox( //인공호흡기
+                          value: isChecked_Respirator,
+                          onChanged: (bool? newValue) {
+                            setState(() {
+                              isChecked_Respirator = newValue!;
+                            });
+                          },
+                          fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                            if (states.contains(MaterialState.selected)) {
+                              return Color.fromARGB(255, 212, 96, 107); // 체크박스가 선택되었을 때의 색상
+                            }
+                              return Colors.white; // 체크박스가 선택되지 않았을 때의 색상
+                          }),
+                          side: BorderSide(
+                            color: Colors.white,
+                          ),
+                          checkColor: Colors.white,
+                        ),
+                        Text(
+                        '인공호흡기', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    //체크박스 한줄 끝
                   ],
                 )
             )
