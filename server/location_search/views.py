@@ -2,6 +2,7 @@ from django.shortcuts import render
 import requests
 from django.http import JsonResponse
 from django.conf import settings
+from .models import Location
 
 def get_location(request):
     lat = request.GET.get('lat')
@@ -21,6 +22,15 @@ def get_location(request):
             "sido": data['documents'][0]['region_1depth_name'],
             "sigungu": data['documents'][0]['region_2depth_name']
         }
+        # 데이터베이스에 저장
+        location = Location(
+            sido=region_info['sido'],
+            sigungu=region_info['sigungu'],
+            latitude=lat,
+            longitude=lng
+        )
+        location.save()
+
         return JsonResponse(region_info)
     else:
         return JsonResponse({'error': 'Failed to fetch data from Kakao API'}, status=response.status_code)
