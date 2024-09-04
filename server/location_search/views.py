@@ -2,7 +2,7 @@ from django.shortcuts import render
 import requests
 from django.http import JsonResponse
 from django.conf import settings
-from .models import Location
+from .models import Stage
 
 def get_location(request):
     lat = request.GET.get('lat')
@@ -23,7 +23,7 @@ def get_location(request):
             "sigungu": data['documents'][0]['region_2depth_name']
         }
         # 데이터베이스에 저장
-        location = Location(
+        location = Stage(
             sido=region_info['sido'],
             sigungu=region_info['sigungu'],
             latitude=lat,
