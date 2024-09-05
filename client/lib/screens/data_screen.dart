@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
-import 'package:flutter_browser/widgets/custom_checkbox.dart';
+
 
 class DataScreen extends StatefulWidget{
   @override
@@ -302,18 +302,40 @@ class _DataScreen extends State<DataScreen> {
                     Container(
                       margin: EdgeInsets.only(left: 25, top: 5),
                       width: 400,
-                      height: 50,
+                      height: 115,
                       color: Colors.white,
+                      padding: EdgeInsets.only(left: 7, right: 7),
                       child: TextField(
                         decoration: InputDecoration(
-                        labelText: '입력',
+                        hintText: '환자 상태를 입력하세요.',
                         ),
+                        maxLines: null
                       )
-                    )
+                    ),
                   ],
                 )
-            )
+            ),
+            Container( //매칭 버튼
+              padding: EdgeInsets.only(top: 15),
+              child: Center(
+                child: SizedBox(
+                  width: 125,
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 247, 201, 201),),
+                    onPressed: () {
+                    // Navigator.of(context).push( 
+                    // MaterialPageRoute(  
+                    // builder: (BuildContext context) => DataScreen()
+                    // ));
+                    }, 
+                    child: Text('매칭 신청', style: TextStyle(fontSize: 14 ,color: Colors.black, fontWeight: FontWeight.bold))
+                  ),
+                )
+              ),
+            ),
         ],
+        
       )
     );
   }
