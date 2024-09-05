@@ -21,7 +21,21 @@
 
     <div id="results">
         <h2>Hospital Search Results</h2>
-        <!-- 검색 결과가 여기에 표시될 예정 -->
+        {% if hospitals %}
+            <ul>
+                {% for hospital in hospitals %}
+                    <li>
+                        <strong>Institution ID (hpid):</strong> {{ hospital.hpid }}<br>
+                        <strong>Distance:</strong> {{ hospital.distance }} meters<br>
+                        <strong>Name (dutyName):</strong> {{ hospital.dutyName }}<br>
+                        <strong>Address (dutyAddr):</strong> {{ hospital.dutyAddr }}<br>
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hospitals found in the specified area.</p>
+        {% endif %}
     </div>
 </body>
 </html>
