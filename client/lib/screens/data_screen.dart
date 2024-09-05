@@ -320,7 +320,7 @@ class _DataScreen extends State<DataScreen> {
               child: Center(
                 child: SizedBox(
                   width: 125,
-                  height: 40,
+                  height: 37,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 247, 201, 201),),
                     onPressed: () {
@@ -329,7 +329,7 @@ class _DataScreen extends State<DataScreen> {
                     // builder: (BuildContext context) => DataScreen()
                     // ));
                     }, 
-                    child: Text('매칭 신청', style: TextStyle(fontSize: 14 ,color: Colors.black, fontWeight: FontWeight.bold))
+                    child: Text('매칭 신청', style: TextStyle(fontSize: 15 ,color: Colors.black, fontWeight: FontWeight.bold))
                   ),
                 )
               ),
