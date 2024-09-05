@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'er_info',
     'location_search',
     'rest_framework',
     'django.contrib.admin',
