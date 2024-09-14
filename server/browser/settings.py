@@ -137,3 +137,4 @@ from dotenv import load_dotenv
 load_dotenv()
 
 KAKAO_API_KEY = os.getenv('KAKAO_API_KEY')
+ER_API_KEY = "+3D1S2C6DkdGZenwOM2xvk0fohJdaeFkwkIMsVFpxq/+ZT34Ad1p9qjCT7gTgag0Y6zSAgWdBJufy147BSMRJw==" #Decoding
