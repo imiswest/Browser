@@ -1,45 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:flutter_browser/widgets/custom_appbar.dart';
 
-class MapOptionsExample extends StatefulWidget {
+
+class ResultScreen extends StatefulWidget{
   @override
-  _MapOptionsExampleState createState() => _MapOptionsExampleState();
+  _ResultScreen createState() => _ResultScreen();
 }
 
-class _MapOptionsExampleState extends State<MapOptionsExample> {
+class _ResultScreen extends State<ResultScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MapOptions Example'),
-      ),
-      body: FlutterMap(
-        options: MapOptions(
-          initialCenter: LatLng(37.5665, 126.9780),  // 서울 좌표
-          initialZoom: 16.5,  // 초기 줌 레벨
-          maxZoom: 20.0,
-          minZoom: 7.0, 
-        ),
+      appBar: CustomAppBar(),
+
+      body: Column( //전체
         children: [
-          // OSM 타일 레이어
-          TileLayer(
-            urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-            subdomains: ['a', 'b', 'c'],
+          Padding(padding: EdgeInsets.only(top: 100)),
+          Center(
+            child: Text("병원 매칭이 완료되었습니다!", style: TextStyle(fontWeight: FontWeight.bold,fontSize: 23),),
           ),
-          // 마커 레이어
-          MarkerLayer(
-            markers: [
-              Marker( 
-                width: 80.0,
-                height: 80.0,
-                point: LatLng(37.5665, 126.9780),  // 서울 좌표에 마커 추가
-                child: Icon(Icons.location_on, color: Colors.red, size: 40),
-              ),
-            ],
-          ),
+          Container(
+            color: Color.fromARGB(255, 171, 110, 110),
+            width: 300,
+            height: 5,
+            )
+          
+          
         ],
-      ),
+           
+      )
     );
   }
 }
