@@ -76,8 +76,18 @@
     </script>
 </head>
 <body>
-    <h1>위경도 행정구역 조회</h1>
-    
+    <h1>위치 정보</h1>
+
+    <hr>
+
+    <!-- Geolocation API로 현재 위치 가져오기 -->
+    <h2>현위치 위경도 조회</h2>
+    <button onclick="getLocation()">내 위치 찾기</button>
+    <!-- 결과 출력할 곳 : 현재 위치 위도/경도 출력 -->
+    <p id="current-location"></p>
+
+
+    <h2>위경도 행정구역 조회</h2>
     <!-- 기존 위도/경도 입력 기능 -->
     <form id="location-form" onsubmit="event.preventDefault(); fetchLocation();">
         <label for="lat">위도:</label>
@@ -87,15 +97,8 @@
         <button type="submit">조회</button>
     </form>
 
-    <!-- 결과를 출력할 곳 -->
+    <!-- 결과 출력할 곳 : 시도/시군구 출력 -->
     <div id="result"></div>
-
-    <hr>
-
-    <!-- Geolocation API로 현재 위치 가져오기 -->
-    <h2>현재 위치 정보</h2>
-    <button onclick="getLocation()">내 위치 찾기</button>
-    <p id="current-location"></p> <!-- 현재 위치 위도/경도 출력 -->
     
 </body>
 </html>
