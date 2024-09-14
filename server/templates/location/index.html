@@ -36,6 +36,10 @@
             let longitude = position.coords.longitude;
             document.getElementById("current-location").innerHTML = "위도: " + latitude + ", 경도: " + longitude;
 
+            // 위도/경도를 <input> 필드에 자동으로 채워줌
+            document.getElementById("lat").value = latitude;
+            document.getElementById("lng").value = longitude;
+
             // 위도/경도를 서버로 전송하는 코드
             fetch('/location_search/save_location/', {
                 method: 'POST',
