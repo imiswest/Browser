@@ -1,8 +1,10 @@
 from django.shortcuts import render
-import requests
 from django.http import JsonResponse
 from django.conf import settings
 from .models import Stage
+from django.views.decorators.csrf import csrf_exempt
+import requests
+import json
 
 def get_location(request):
     lat = request.GET.get('lat')
@@ -38,3 +40,20 @@ def get_location(request):
 
 def index(request):
     return render(request, 'location/index.html')
+
+
+@csrf_exempt
+def save_location(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            latitude = data.get('latitude')
+            longitude = data.get('longitude')
+
+            # 위도/경도를 처리하는 로직 (예: DB에 저장하거나 시도/시군구 변환)
+            # 이 부분은 필요에 따라 구현하세요.
+
+            return JsonResponse({'status': 'success', 'latitude': latitude, 'longitude': longitude})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)})
+    return JsonResponse({'status': 'invalid request'})
