@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
+import 'package:flutter_browser/screens/loding_screen.dart';
 
 
 class DataScreen extends StatefulWidget{
@@ -324,10 +325,10 @@ class _DataScreen extends State<DataScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 247, 201, 201),),
                     onPressed: () {
-                    // Navigator.of(context).push( 
-                    // MaterialPageRoute(  
-                    // builder: (BuildContext context) => DataScreen()
-                    // ));
+                    Navigator.of(context).push( 
+                    MaterialPageRoute(  
+                    builder: (BuildContext context) => LodingScreen()
+                    ));
                     }, 
                     child: Text('매칭 신청', style: TextStyle(fontSize: 15 ,color: Colors.black, fontWeight: FontWeight.bold))
                   ),
