@@ -11,10 +11,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+TEMPLATES_DIR = BASE_DIR / "templates"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -31,6 +32,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'er_info',
+    'location_search',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'browser.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,11 +79,14 @@ WSGI_APPLICATION = 'browser.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'current_addr',     # 데이터베이스 이름
+        'USER': 'root',     # 데이터베이스 사용자 이름
+        'PASSWORD': '1234',      # 데이터베이스 비밀번호
+        'HOST': 'localhost',              # 데이터베이스 호스트, 일반적으로 로컬 서버는 'localhost'
+        'PORT': '3306',                   # 기본적으로 MySQL의 포트는 3306
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -109,7 +116,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -121,3 +128,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# API key
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+KAKAO_API_KEY = os.getenv('KAKAO_API_KEY')
+ER_API_KEY = "+3D1S2C6DkdGZenwOM2xvk0fohJdaeFkwkIMsVFpxq/+ZT34Ad1p9qjCT7gTgag0Y6zSAgWdBJufy147BSMRJw==" #Decoding

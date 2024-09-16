@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Room Realtime Info</title>
+</head>
+<body>
+    <h1>실시간 응급실 정보</h1>
+
+    <div>
+        {% if hospitals %}
+            <ul>
+                {% for hospital in hospitals %}
+                    <li>
+                        <strong>병원 이름:</strong> {{ hospital.dutyName }}<br>
+                        <strong>전화번호:</strong> {{ hospital.dutyTel3 }}<br>
+                        <strong>분류:</strong> <!-- 나중에 적기 --> <br>
+                        <strong>주소:</strong> <!-- 나중에 적기 --> <br>
+                        <!-- 다른 필요한 정보도 추가로 출력 -->
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>응급실 정보를 가져올 수 없습니다.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

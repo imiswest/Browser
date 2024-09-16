@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>응급실 실시간 정보</title>
+    <script>
+        function fetchRealtimeInfo() {
+            fetch('/emergencyroom/er-realtime-info/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('er-info').innerText = data.error;
+                    } else {
+                        let result = '<ul>';  // 리스트로 병원 정보 표시
+                        data.hospitals.forEach(hospital => {
+                            result += `
+                                <li>
+                                    <strong>병원명:</strong> ${hospital.dutyName} <br>
+                                    <strong>전화번호:</strong> ${hospital.dutyTel3} <br>
+                                    <strong>병원 ID:</strong> ${hospital.hpid} <br>
+                                    <strong>가용 병상:</strong> ${hospital.hv10} <br>
+                                    <hr> <!-- 각 병원 정보 사이에 구분선 추가 -->
+                                </li>
+                            `;
+                        });
+                        result += '</ul>';
+                        document.getElementById('er-info').innerHTML = result;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('er-info').innerText = '응급실 정보를 불러오는 중 오류가 발생했습니다.';
+                });
+        }
+
+        // 페이지 로드 시 AJAX로 실시간 정보를 가져옴
+        window.onload = fetchRealtimeInfo;
+    </script>
+</head>
+<body>
+    <h1>응급실 실시간 정보</h1>
+    <div id="er-info">
+        <!-- 실시간 정보가 여기에 표시됩니다 -->
+    </div>
+</body>
+</html>
