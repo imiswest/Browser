@@ -1,9 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
+from rest_framework import serializers
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 from .models import LocationSearchStage
 from .models import ERRealtimeInfo
+from .serializers import ERRealtimeInfoSerializer
 
 import requests
 import xml.etree.ElementTree as ET
@@ -118,3 +122,10 @@ def er_realtime_info_view(request):
         context = {'error': '응급실 정보를 가져올 수 없습니다.'}
     
     return render(request, 'emergencyroom/er_info.html', context)
+
+# RestAPI 뷰 (데이터를 직렬화하여 클라이언트에 반환)
+@api_view(['GET'])
+def er_realtime_info_api(request):
+    hospitals = ERRealtimeInfo.objects.all()
+    serializer = ERRealtimeInfoSerializer(hospitals, many=True)
+    return Response(serializer.data)
