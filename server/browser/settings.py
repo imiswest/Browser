@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'er_info',
     'location_search',
     'rest_framework',
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,3 +141,5 @@ load_dotenv()
 
 KAKAO_API_KEY = os.getenv('KAKAO_API_KEY')
 ER_API_KEY = "+3D1S2C6DkdGZenwOM2xvk0fohJdaeFkwkIMsVFpxq/+ZT34Ad1p9qjCT7gTgag0Y6zSAgWdBJufy147BSMRJw==" #Decoding
+
+CORS_ALLOW_ALL_ORIGINS = True  # 모든 출처 허용 (개발용)
