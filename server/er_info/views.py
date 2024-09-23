@@ -1,10 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
+from rest_framework import serializers
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 from .models import LocationSearchStage
 from .models import ERRealtimeInfo
+<<<<<<< HEAD
 from .models import ERStandardInfo
+=======
+from .serializers import ERRealtimeInfoSerializer
+>>>>>>> 377a36b9c068251c2bc2003fa107f79a096571a5
 
 import requests
 import xml.etree.ElementTree as ET
@@ -123,6 +130,7 @@ def er_realtime_info_view(request):
     
     return render(request, 'emergencyroom/er_info.html', context)
 
+<<<<<<< HEAD
 '''
 표준(목록정보) 데이터 관련
 '''
@@ -159,3 +167,11 @@ def fetch_and_store_er_standard_info(request):
         return render(request, 'emergencyroom/er_info.html', {'message': '병원 정보가 성공적으로 저장되었습니다.'})
     else:
         return render(request, 'emergencyroom/er_info.html', {'message': 'API 요청 실패'})
+=======
+# RestAPI 뷰 (데이터를 직렬화하여 클라이언트에 반환)
+@api_view(['GET'])
+def er_realtime_info_api(request):
+    hospitals = ERRealtimeInfo.objects.all()
+    serializer = ERRealtimeInfoSerializer(hospitals, many=True)
+    return Response(serializer.data)
+>>>>>>> 377a36b9c068251c2bc2003fa107f79a096571a5
