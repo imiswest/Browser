@@ -26,12 +26,13 @@ SECRET_KEY = 'django-insecure-ny4+t246v%2+6pw%2+r$59xh@mv^yv+5^c%k#8zb#93!1n$=l#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['1333-222-96-17-31.ngrok-free.app', 'localhost', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'er_info',
     'location_search',
     'rest_framework',
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,3 +141,5 @@ load_dotenv()
 
 KAKAO_API_KEY = os.getenv('KAKAO_API_KEY')
 ER_API_KEY = "+3D1S2C6DkdGZenwOM2xvk0fohJdaeFkwkIMsVFpxq/+ZT34Ad1p9qjCT7gTgag0Y6zSAgWdBJufy147BSMRJw==" #Decoding
+
+CORS_ALLOW_ALL_ORIGINS = True  # 모든 출처 허용 (개발용)
