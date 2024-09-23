@@ -1,7 +1,8 @@
 from django.db import models
 
-# Create your models here.
-
+'''
+실시간 데이터 관련
+'''
 class LocationSearchStage(models.Model):
     sido = models.CharField(max_length=100)
     sigungu = models.CharField(max_length=100)
@@ -11,7 +12,7 @@ class LocationSearchStage(models.Model):
         managed = False  # Django가 이 테이블을 관리하지 않음
 
 class ERRealtimeInfo(models.Model):
-    # 병원 기본 정보
+    # 병원 정보
     hpid = models.CharField(max_length=50)  # 병원 ID
     dutyName = models.CharField(max_length=255)  # 병원 이름
     
@@ -31,3 +32,20 @@ class ERRealtimeInfo(models.Model):
 
     class Meta:
         db_table = 'er_realtime_info'  # 새로운 테이블명 지정
+
+'''
+표준(목록정보) 데이터 관련
+'''
+class ERStandardInfo(models.Model):
+    hpid = models.CharField(max_length=20, unique=True)  # 기관 ID
+    dutyTel3 = models.CharField(max_length=20)  # 응급실 전화번호
+    dutyEmclsName = models.CharField(max_length=50)  # 응급의료기관분류명
+    dutyAddr = models.CharField(max_length=200)  # 주소
+    latitude = models.FloatField()  # 병원 위도
+    longitude = models.FloatField()  # 병원 경도
+
+    class Meta:
+        db_table = 'er_standard_info'  # MySQL의 테이블명 설정
+
+    def __str__(self):
+        return self.hpid
