@@ -15,10 +15,12 @@ factory Hospital.fromJson(Map<String, dynamic> json){
 }
 
 class FirstApi{
-  final String apiUrl = "https://4cf6-118-47-136-130.ngrok-free.app/emergencyroom/api/er-info/";
+  final String apiUrl = "https://7d9b-14-44-120-104.ngrok-free.app/emergencyroom/api/er-info/?format=json";
   Future<List<Hospital>> fetchHospitalData() async {
-    print('I am in fetchHospitalData function.');
-    final response = await http.get(Uri.parse(apiUrl));
+    print('I am in fetchHospitalData function.'); 
+    final response = await http.get(Uri.parse(apiUrl),headers: {"Accept": "application/json","ngrok-skip-browser-warning": "true"});
+    print(response.statusCode);
+    print(response.body);
 
     if (response.statusCode == 200) {
        print('API get success');
