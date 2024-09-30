@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_browser/screens/first_screen.dart';
 import 'package:flutter_browser/screens/data_screen.dart';
+import 'package:flutter_browser/screens/hospitalData_screen.dart';
 import 'package:flutter_browser/screens/loding_screen.dart';
 import 'package:flutter_browser/screens/result_screen.dart';
 
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor:  Color.fromARGB(255, 253, 194, 204)),
         useMaterial3: true,
       ),
-      home: ResultScreen()
+      home: HospitaldataScreen()
     );
   }
 }
