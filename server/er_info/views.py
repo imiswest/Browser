@@ -163,6 +163,7 @@ def fetch_and_store_er_standard_info(request):
         return render(request, 'emergencyroom/er_info.html', {'message': '병원 정보가 성공적으로 저장되었습니다.'})
     else:
         return render(request, 'emergencyroom/er_info.html', {'message': 'API 요청 실패'})
+    
 # RestAPI 뷰 (데이터를 직렬화하여 클라이언트에 반환)
 @api_view(['GET'])
 def er_realtime_info_api(request):

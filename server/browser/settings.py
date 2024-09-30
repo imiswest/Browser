@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ny4+t246v%2+6pw%2+r$59xh@mv^yv+5^c%k#8zb#93!1n$=l#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['7d9b-14-44-120-104.ngrok-free.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['.amazonaws.com', '127.0.0.1']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
