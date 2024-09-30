@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-class Map extends StatefulWidget {
+class MapScreen extends StatefulWidget {
   @override
-  _Map createState() => _Map();
+  _MapScreen createState() => _MapScreen();
 }
 
-class _Map extends State<Map> {
+class _MapScreen extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

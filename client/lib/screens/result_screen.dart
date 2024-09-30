@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
 import 'package:flutter_browser/widgets/map.dart';
+import 'package:flutter_browser/screens/hospitalData_screen.dart';
 
 
 class ResultScreen extends StatefulWidget{
@@ -27,7 +28,7 @@ class _ResultScreen extends State<ResultScreen> {
             width: 315,
             height: 6,
           ),
-          Padding(padding: EdgeInsets.only(top: 40)),
+          Padding(padding: EdgeInsets.only(top: 30)),
           Text("환자 이송 장소",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 19),),
           
           Container(//병원 위치 정보 박스
@@ -59,12 +60,39 @@ class _ResultScreen extends State<ResultScreen> {
                   Container(
                     padding: EdgeInsets.all(10),
                     width: 400, height: 240,
-                    child: Map(),
+                    child: MapScreen(),
                   ),
                   Container(
                     width: 360,
                     child: Text("부산광역시 해운대구 해운대로 875",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 20)),
-                  )
+                  ),
+                   Padding(padding: EdgeInsets.only(top: 10)),
+                    Container(
+                      margin: EdgeInsets.only(left: 48),
+                      child: Row(
+                        children: [      
+                          Text("거리 : 00km", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                          Padding(padding: EdgeInsets.all(10)),
+                          Text("소요시간 : 00분", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                          Padding(padding: EdgeInsets.all(10)),
+                          SizedBox(
+                            width: 130,
+                            height: 30,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 255, 236, 236),),
+                              onPressed: () {
+      
+                              Navigator.of(context).push( 
+                              MaterialPageRoute(  
+                              builder: (BuildContext context) => HospitaldataScreen()
+                              ));
+                              },
+                              child: Text('정보 더보기', style: TextStyle(fontSize: 13 ,color: Colors.black, fontWeight: FontWeight.bold))
+                            ),
+                          )
+                        ],
+                    )
+                    )
                   
               ],
             ),
