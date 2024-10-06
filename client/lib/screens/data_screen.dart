@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_browser/screens/result_screen.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
-import 'package:flutter_browser/screens/loding_screen.dart';
+
 
 
 class DataScreen extends StatefulWidget{
@@ -327,7 +328,7 @@ class _DataScreen extends State<DataScreen> {
                     onPressed: () {
                     Navigator.of(context).push( 
                     MaterialPageRoute(  
-                    builder: (BuildContext context) => LodingScreen()
+                    builder: (BuildContext context) => ResultScreen()
                     ));
                     }, 
                     child: Text('매칭 신청', style: TextStyle(fontSize: 15 ,color: Colors.black, fontWeight: FontWeight.bold))
