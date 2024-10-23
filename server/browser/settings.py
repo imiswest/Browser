@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ny4+t246v%2+6pw%2+r$59xh@mv^yv+5^c%k#8zb#93!1n$=l#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.amazonaws.com', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
@@ -84,8 +84,8 @@ WSGI_APPLICATION = 'browser.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'current_addr',     # 데이터베이스 이름
-        'USER': 'root',     # 데이터베이스 사용자 이름
+        'NAME': 'emergency_db',     # 데이터베이스 이름
+        'USER': 'server_developer',     # 데이터베이스 사용자 이름
         'PASSWORD': '1234',      # 데이터베이스 비밀번호
         'HOST': 'localhost',              # 데이터베이스 호스트, 일반적으로 로컬 서버는 'localhost'
         'PORT': '3306',                   # 기본적으로 MySQL의 포트는 3306
