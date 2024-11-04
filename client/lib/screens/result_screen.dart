@@ -142,26 +142,24 @@ class HospitalListScreen extends StatelessWidget {
                               backgroundColor: Color.fromARGB(255, 255, 236, 236),
                             ),
                             onPressed: () {
-                              if (hospitalData.isNotEmpty) {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) => HospitaldataScreen(
-                                      hospitalName: hospitalData[0].dutyName,
-                                      hospitalId: hospitalData[0].hpid,
-                                      hvec: hospitalData[0].hvec,
-                                      hvccc: hospitalData[0].hvccc,
-                                      hv2: hospitalData[0].hv2,
-                                      hv3: hospitalData[0].hv3,
-                                      hv6: hospitalData[0].hv6,
-                                      hv34: hospitalData[0].hv34,
-                                      hvctayn: hospitalData[0].hvctayn,
-                                      hvmriayn: hospitalData[0].hvmriayn,
-                                      hvangioayn: hospitalData[0].hvangioayn,
-                                      hvventiayn: hospitalData[0].hvventiayn,
-                                    ),
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => HospitaldataScreen(
+                                    // hospitalName: hospitalData[0].dutyName,
+                                    // hospitalId: hospitalData[0].hpid,
+                                    // hvec: hospitalData[0].hvec,
+                                    // hvccc: hospitalData[0].hvccc,
+                                    // hv2: hospitalData[0].hv2,
+                                    // hv3: hospitalData[0].hv3,
+                                    // hv6: hospitalData[0].hv6,
+                                    // hv34: hospitalData[0].hv34,
+                                    // hvctayn: hospitalData[0].hvctayn,
+                                    // hvmriayn: hospitalData[0].hvmriayn,
+                                    // hvangioayn: hospitalData[0].hvangioayn,
+                                    // hvventiayn: hospitalData[0].hvventiayn,
                                   ),
-                                );
-                              }
+                                ),
+                              );
                             },
                             child: Text(
                               '정보 더보기',
