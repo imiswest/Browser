@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 
 # index 뷰 함수 정의
 def index(request):
-    return HttpResponse("This is the Emergency Room information page.")
+    return render(request, 'emergencyroom/index.html')
 
 '''
 실시간 데이터 관련
