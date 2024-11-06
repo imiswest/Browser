@@ -26,12 +26,15 @@ SECRET_KEY = 'django-insecure-ny4+t246v%2+6pw%2+r$59xh@mv^yv+5^c%k#8zb#93!1n$=l#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['43.202.50.175', 'localhost', '.amazonaws.com', '127.0.0.1']
+#ALLOWED_HOSTS = ['*']
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'er_info',
     'location_search',
     'rest_framework',
@@ -44,6 +47,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,8 +85,8 @@ WSGI_APPLICATION = 'browser.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'current_addr',     # 데이터베이스 이름
-        'USER': 'root',     # 데이터베이스 사용자 이름
+        'NAME': 'emergency_db',     # 데이터베이스 이름
+        'USER': 'server_developer',     # 데이터베이스 사용자 이름
         'PASSWORD': '1234',      # 데이터베이스 비밀번호
         'HOST': 'localhost',              # 데이터베이스 호스트, 일반적으로 로컬 서버는 'localhost'
         'PORT': '3306',                   # 기본적으로 MySQL의 포트는 3306
@@ -138,3 +143,5 @@ load_dotenv()
 
 KAKAO_API_KEY = os.getenv('KAKAO_API_KEY')
 ER_API_KEY = "+3D1S2C6DkdGZenwOM2xvk0fohJdaeFkwkIMsVFpxq/+ZT34Ad1p9qjCT7gTgag0Y6zSAgWdBJufy147BSMRJw==" #Decoding
+
+CORS_ALLOW_ALL_ORIGINS = True  # 모든 출처 허용 (개발용)
