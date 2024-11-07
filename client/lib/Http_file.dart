@@ -51,7 +51,7 @@ factory Hospital.fromJson(Map<String, dynamic> json){
 }
 
 class FirstApi{
-  final String apiUrl = "https://7d9b-14-44-120-104.ngrok-free.app/emergencyroom/api/er-info/?format=json";
+  final String apiUrl = "  "; //여기에요 여기!
   Future<List<Hospital>> fetchHospitalData() async {
     print('I am in fetchHospitalData function.'); 
     //API 요청

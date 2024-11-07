@@ -32,7 +32,7 @@ class _DataScreen extends State<DataScreen> {
 
   // 서버로 데이터를 전송하는 함수
   Future<void> sendDataToServer() async {
-    final url = Uri.parse('서버에서 데이터를 받을 API 엔드포인트 URL');
+    final url = Uri.parse('서버에서 데이터를 받을 API 엔드포인트 URL'); //여기에요 여기!
 
   //보내려는 데이터를 JSON형식으로 변환
   final response = await http.post(

@@ -18,7 +18,7 @@ class _MapScreen extends State<MapScreen> {
   }
   // 서버에서 위경도 데이터 가져오는 함수
   Future<void> fetchLocationData() async {
-    final response = await http.get(Uri.parse('http://43.202.50.175:8000/location/'));
+    final response = await http.get(Uri.parse('  ')); //여기에요 여기!
     if (response.statusCode == 200) {
       final data = json.decode(response.body); // JSON 응답을 파싱
       // 서버에서 받은 데이터를 위경도 형태로 변환
