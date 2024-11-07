@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_browser/screens/hospitalData_screen.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
 import 'package:flutter_browser/widgets/map.dart';
+import 'package:flutter_browser/screens/hospitalData_screen.dart';
 import 'package:flutter_browser/Http_file.dart';
 import 'package:flutter_browser/screens/loding_screen.dart';
 import 'dart:core';
