@@ -6,6 +6,9 @@ from django.views.decorators.csrf import csrf_exempt
 import requests
 import json
 
+def index(request):
+    return render(request, 'location/index.html')
+
 def get_location(request):
     lat = request.GET.get('lat')
     lng = request.GET.get('lng')
@@ -38,8 +41,7 @@ def get_location(request):
         return JsonResponse({'error': 'Failed to fetch data from Kakao API'}, status=response.status_code)
 
 
-def index(request):
-    return render(request, 'location/index.html')
+
 
 
 @csrf_exempt
