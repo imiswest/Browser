@@ -103,7 +103,7 @@ class HospitalListScreen extends StatelessWidget{
                           Container(
                             padding: EdgeInsets.all(10),
                             width: 400, height: 220,
-                            child: MapScreen(),
+                            child: MapScreen(),//지도
                           ),
                           Container(
                             width: 360,
