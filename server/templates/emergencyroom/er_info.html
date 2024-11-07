@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,21 @@
 <body>
     <h1>실시간 응급실 정보</h1>
 
+    <!-- 병원 정보 조회를 위한 폼 -->
+    <form method="get" action="/fetch-hospitals/">
+        <label for="qn">기관명:</label>
+        <input type="text" id="qn" name="qn" required>
+        <button type="submit">조회</button>
+    </form>
+
+    <!-- 성공 및 오류 메시지 출력 -->
+    {% if message %}
+        <div>
+            <p>{{ message }}</p>
+        </div>
+    {% endif %}
+
+    <!-- 실시간 응급실 정보 -->
     <div>
         {% if hospitals %}
             <ul>
@@ -15,9 +30,11 @@
                     <li>
                         <strong>병원 이름:</strong> {{ hospital.dutyName }}<br>
                         <strong>전화번호:</strong> {{ hospital.dutyTel3 }}<br>
-                        <strong>분류:</strong> <!-- 나중에 적기 --> <br>
-                        <strong>주소:</strong> <!-- 나중에 적기 --> <br>
-                        <!-- 다른 필요한 정보도 추가로 출력 -->
+                        <strong>분류:</strong> {{ hospital.dutyEmclsName }}<br>
+                        <strong>주소:</strong> {{ hospital.dutyAddr }}<br>
+                        <strong>위도:</strong> {{ hospital.latitude }}<br>
+                        <strong>경도:</strong> {{ hospital.longitude }}<br>
+                        <!-- 추가 정보가 있다면 여기에 표시 -->
                     </li>
                     <hr>
                 {% endfor %}

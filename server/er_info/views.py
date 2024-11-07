@@ -7,16 +7,20 @@ from rest_framework.decorators import api_view
 
 from .models import LocationSearchStage
 from .models import ERRealtimeInfo
+from .models import ERStandardInfo
 from .serializers import ERRealtimeInfoSerializer
 
 import requests
 import xml.etree.ElementTree as ET
 
-
 # index 뷰 함수 정의
 
 def index(request):
-    return HttpResponse("This is the Emergency Room information page.")
+    return render(request, 'emergencyroom/index.html')
+
+'''
+실시간 데이터 관련
+'''
 
 # 가장 최근 저장된 위치정보 데이터 가져오는 함수 정의
 def get_latest_location():
@@ -124,6 +128,43 @@ def er_realtime_info_view(request):
     
     return render(request, 'emergencyroom/er_info.html', context)
 
+'''
+표준(목록정보) 데이터 관련
+'''
+def fetch_and_store_er_standard_info(request):
+    qn = request.GET.get('qn', '')  # 기관명
+    if not qn:
+        return render(request, 'emergencyroom/er_info.html', {'message': '기관명을 입력하세요.'})
+
+    api_url = "http://apis.data.go.kr/B552657/ErmctInfoInqireService/getEgytListInfoInqire"
+    
+    params = {
+        'serviceKey': settings.ER_API_KEY,  # 서비스 키
+        'QN': qn,  # 기관명
+        'numOfRows': 10,  # 반환할 데이터 수
+        'pageNo': 1,
+        '_type': 'json'  # JSON 형식으로 응답
+    }
+
+    response = requests.get(api_url, params=params)
+    if response.status_code == 200:
+        data = response.json()
+        
+        if 'items' in data['response']['body']:
+            for item in data['response']['body']['items']:
+                # MySQL에 저장
+                ERStandardInfo.objects.create(
+                    hpid=item['hpid'],
+                    dutyTel3=item['dutyTel3'],
+                    dutyEmclsName=item['dutyEmclsName'],
+                    dutyAddr=item['dutyAddr'],
+                    latitude=item['wgs84Lat'],
+                    longitude=item['wgs84Lon']
+                )
+        return render(request, 'emergencyroom/er_info.html', {'message': '병원 정보가 성공적으로 저장되었습니다.'})
+    else:
+        return render(request, 'emergencyroom/er_info.html', {'message': 'API 요청 실패'})
+    
 # RestAPI 뷰 (데이터를 직렬화하여 클라이언트에 반환)
 @api_view(['GET'])
 def er_realtime_info_api(request):
