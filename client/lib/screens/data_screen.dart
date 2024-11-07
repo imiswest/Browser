@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_browser/screens/result_screen.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
+
 import 'package:flutter_browser/screens/loding_screen.dart';
+import 'package:http/http.dart' as http; //http 요청을 위한 패키지
+import 'dart:convert'; //JSON 변환을 위한 패키지
 
 
 class DataScreen extends StatefulWidget{
@@ -23,6 +27,44 @@ class _DataScreen extends State<DataScreen> {
   bool isChecked_Vessel = false;
   bool isChecked_Respirator = false;
 
+  // 텍스트 필드 컨트롤러 (텍스트 필드에 입력한 값 가져와서 사용하기 위함)
+  TextEditingController patientStateController = TextEditingController();
+
+  // 서버로 데이터를 전송하는 함수
+  Future<void> sendDataToServer() async {
+    final url = Uri.parse('서버에서 데이터를 받을 API 엔드포인트 URL');
+
+  //보내려는 데이터를 JSON형식으로 변환
+  final response = await http.post(
+    url,
+    headers:  {
+      'Content-Type' : 'application/json',
+    },
+    body: jsonEncode({
+      'gender': _selectedValue1,
+      'age': _selectedValue2,
+      'KRAS': _selectedValue3,
+      'hospital_department' : _selectedValue4,
+      'CT' : isChecked_CT,
+      'MRI' : isChecked_MRI,
+      'vessel_scan' : isChecked_Vessel,
+      'respirator' : isChecked_Respirator,
+      'patient_state' : patientStateController.text,
+    }),
+  );
+
+  if (response.statusCode == 200){ 
+    print('Data sent successfully');
+    Navigator.of(context).push( //데이터 전송 성공하면 로딩 화면으로 넘어감
+      MaterialPageRoute(
+        builder: (BuildContext context) => LodingScreen(),
+      ),
+  );
+  } else {
+    print('Fail to send data');
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +85,7 @@ class _DataScreen extends State<DataScreen> {
                 width: 450,
                 height: 460,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 247, 201, 201), // Container의배경색
+                  color: Color.fromARGB(255, 247, 201, 201), // Container의 배경색
                   borderRadius: BorderRadius.circular(15)
                 ),
 
@@ -325,10 +367,8 @@ class _DataScreen extends State<DataScreen> {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 247, 201, 201),),
                     onPressed: () {
-                    Navigator.of(context).push( 
-                    MaterialPageRoute(  
-                    builder: (BuildContext context) => LodingScreen()
-                    ));
+                      sendDataToServer(); //데이터 전송
+                    
                     }, 
                     child: Text('매칭 신청', style: TextStyle(fontSize: 15 ,color: Colors.black, fontWeight: FontWeight.bold))
                   ),

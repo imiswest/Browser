@@ -1,12 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_browser/widgets/custom_appbar.dart';
 
-
 class LodingScreen extends StatelessWidget{
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
